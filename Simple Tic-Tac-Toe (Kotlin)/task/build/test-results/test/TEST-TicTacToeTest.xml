@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TicTacToeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-01-10T07:35:42" hostname="dineshs-MacBook-Air.local" time="0.045">
+  <properties/>
+  <testcase name="start" classname="TicTacToeTest" time="0.045"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+X X O
+X O X
+X O X
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
