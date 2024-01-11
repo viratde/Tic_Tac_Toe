@@ -1,12 +1,13 @@
 package tictactoe
 
+import java.lang.NumberFormatException
 import kotlin.math.abs
 
 fun main() {
     // write your code here
 
 
-    val stateString = readln()
+    val stateString = "         "
 
     val gameState = mutableListOf(
         stateString.slice(0..2).toMutableList(),
@@ -15,6 +16,37 @@ fun main() {
     )
 
     logGameState(gameState = gameState)
+    var player = 'X'
+
+    while (true) {
+        try {
+            val playGame = readln().split(" ").filter {
+                it.isNotEmpty()
+            }.map { it.toInt() }
+
+            if (playGame.find { it < 1 || it > 3 } != null) {
+                println("You should enter numbers!")
+            } else if (gameState[playGame[0] - 1][playGame[1] - 1] == 'X' || gameState[playGame[0] - 1][playGame[1] - 1] == 'O') {
+                println("This cell is occupied! Choose another one!")
+            } else {
+                gameState[playGame[0] - 1][playGame[1] - 1] = player
+                player = if (player == 'X') 'O' else 'X'
+                logGameState(gameState = gameState)
+                val gameStatus = findGameStatus(gameState)
+                if (gameStatus == "Draw") {
+                    println(gameStatus)
+                    break
+                } else if (gameStatus.indexOf("wins") != -1) {
+                    println(gameStatus)
+                    break
+                }
+            }
+
+        } catch (e: NumberFormatException) {
+            println("You should enter numbers!")
+        }
+    }
+
 
 }
 
@@ -28,7 +60,7 @@ fun logGameState(
     }
     println("---------")
 
-    println(findGameStatus(gameState))
+//    println(findGameStatus(gameState))
 }
 
 fun findGameStatus(
@@ -51,17 +83,17 @@ fun findGameStatus(
     val xWins = findWinStatus(gameState, 'X')
     val oWins = findWinStatus(gameState, 'O')
 
-    return if(xWins == 0 && oWins == 0 && empty != 0){
+    return if (xWins == 0 && oWins == 0 && empty != 0) {
         "Game not finished"
-    }else if(xWins == 0 && oWins == 0){
+    } else if (xWins == 0 && oWins == 0) {
         "Draw"
-    }else if(xWins > 1 || oWins > 1){
+    } else if (xWins > 1 || oWins > 1) {
         "Impossible"
-    }else if(xWins == 1 && oWins == 1){
+    } else if (xWins == 1 && oWins == 1) {
         "Impossible"
-    }else if(xWins == 1){
+    } else if (xWins == 1) {
         "X wins"
-    }else{
+    } else {
         "O wins"
     }
 

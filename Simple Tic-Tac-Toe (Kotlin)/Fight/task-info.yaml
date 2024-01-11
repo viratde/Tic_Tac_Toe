@@ -431,5 +431,9 @@ files:
       }
     learner_created: false
 feedback_link: https://hyperskill.org/projects/123/stages/658/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Thu, 11 Jan 2024 05:29:03 UTC"
 record: -1
